@@ -31,7 +31,10 @@
 	</script>
 	<body style="position: fixed;width:100%;top:0;left:0;">
 		
-			<p style="font-size: 30px;">测试下拉2</p>
+			
+			<div id="s">
+				<p style="font-size: 30px;">测试下拉2</p>
+			</div>
 		
 	</body>
 </html>
@@ -60,11 +63,9 @@
 	
 	   e.preventDefault();
 	
-	   if( $('#_domain_display').length <=0 )
+	   if( $('#_domain_display').length <=0 ){
 	
-	   {
-	
-	     $('body').prepend('<div id="_domain_display" style="text-align:center;background-color:#ededed;color:#a6a6a6;height:0px;padding:15px 0;line-height:40px;font-size:18px;overflow:hidden;"><p>网页由 xxx提供</p ></div>');
+	     $('#s').prepend('<div id="_domain_display" style="text-align:center;background-color:#ededed;color:#a6a6a6;height:0px;padding:15px 0;line-height:40px;font-size:18px;overflow:hidden;"><p>网页由 xxx提供</p ></div>');
 	
 	   }
 	
