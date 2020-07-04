@@ -177,17 +177,20 @@
     
 
        <script type="text/javascript">
+		   window.addEventListener("scroll",function(e) {
+			   
+		   })
       var doc = $(document);
       var _touches_point1=0;var _touches_point2=0;
-      addEventListener("touchstart",function(e) {
+      document.getElementById("s").addEventListener("touchstart",function(e) {
         _touches_point1 = e.touches[0].pageY;
       });
-      addEventListener("touchend",function(e) {
+      document.getElementById("s").addEventListener("touchend",function(e) {
       	$('#_domain_display').slideUp('normal' , function(){
       		$('#_domain_display').remove();
       	});
       });
-      addEventListener("touchmove",function(e) {	
+      document.getElementById("s").addEventListener("touchmove",function(e) {	
       	_touches_point2 = e.touches[0].pageY;
       	if(doc.scrollTop()<=0 && _touches_point1<_touches_point2){
       	   e.preventDefault();
