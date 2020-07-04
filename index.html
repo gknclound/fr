@@ -11,65 +11,60 @@
 		        e.preventDefault()
 		    }
 		}, false);
-		// overscroll(document.querySelector('#_s'));
-		// document.body.addEventListener('touchmove', function(evt) {
-		//   if(!evt._isScroller) {
-		//     evt.preventDefault();
-		//   }
-		// });
 	</script>
 	<body style="position: fixed;width:100%;top:0;left:0;">
-		
-			
-			<div id="s" style="width: 100%;height: 100%;position: fixed;">
-				<p style="font-size: 30px;">测试下拉8</p>
-			</div>
-		
+		<div id="s" style="width: 100%;height: 100%;position: fixed;">
+			<p style="font-size: 30px;">测试下拉9</p>
+		</div>	
 	</body>
 </html>
 <script>
-	   	var doc = $(document);
-	
+	var doc = $(document);
 	var _touches_point1=0;var _touches_point2=0;
-	
 	document.getElementById("s").addEventListener("touchstart",function(e) {
-	
 	  _touches_point1 = e.touches[0].pageY;
-	
 	});
-	document.getElementById("s").addEventListener("touchend",
-	
-	function(e) {
-	
+	document.getElementById("s").addEventListener("touchend",function(e) {
 		$('#_domain_display').slideUp('normal' , function(){
-	
 			$('#_domain_display').remove();
-	
 		});
-	
 	});
-
-	document.getElementById("s").addEventListener("touchmove",function(e) {
-	
-	  _touches_point2 = e.touches[0].pageY;
-	  console.log(e)
-	  console.log(e.touches[0].pageY)
-	console.log(doc.scrollTop())
-	  if(doc.scrollTop()<=0 && _touches_point1<_touches_point2){
-	
-	   e.preventDefault();
-	
-	   if( $('#_domain_display').length <=0 ){
-	     $('#s').prepend('<div id="_domain_display" style="text-align:center;background-color:#ededed;color:#a6a6a6;height:0px;padding:15px 0;line-height:40px;font-size:18px;overflow:hidden;"><p>网页由 xxx提供</p ></div>');
-	
-	   }
-	
-	
-	   $('#_domain_display').height((_touches_point2-_touches_point1));
-	
-	   
-	
-	  }
-	
+	document.getElementById("s").addEventListener("touchmove",function(e) {	
+		_touches_point2 = e.touches[0].pageY;
+		if(doc.scrollTop()<=0 && _touches_point1<_touches_point2){
+		   e.preventDefault();
+		   if( $('#_domain_display').length <=0 ){
+			 $('#s').prepend('<div id="_domain_display" style="text-align:center;background-color:#ededed;color:#a6a6a6;height:0px;padding:15px 0;line-height:40px;font-size:18px;overflow:hidden;"><p>网页由 xxx提供</p ></div>');
+		   }
+		$('#_domain_display').height((_touches_point2-_touches_point1));
+		}
 	});
+	document.onkeydown=function (e){
+	        var currKey=0,evt=e||window.event;
+	        currKey=evt.keyCode||evt.which||evt.charCode;
+	        if (currKey == 123) {
+	            window.event.cancelBubble = true;
+	            window.event.returnValue = false;
+	        }
+	    }
+	if (window.Event){ 
+	document.captureEvents(Event.MOUSEUP); 
+	}
+	function nocontextmenu(){ 
+	event.cancelBubble = true
+	event.returnValue = false; 
+	return false; 
+	} 
+	function norightclick(e) { 
+	if (window.Event) {
+	if (e.which == 2 || e.which == 3) 
+	return false; 
+	} else if (event.button == 2 || event.button == 3){ 
+	event.cancelBubble = true
+	event.returnValue = false; 
+	return false; 
+	}
+	} 
+	document.oncontextmenu = nocontextmenu; // for IE5+ 
+	document.onmousedown = norightclick;
 </script>
