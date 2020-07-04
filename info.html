@@ -39,7 +39,7 @@
 
 <body style="position: fixed;width:100%;top:0;left:0;height:100%;">
 	<div id="s" style="width:100%;height:100%;">
-		<div style="width:100%;height:100%;overflow-y: scroll;" class="ff">
+		<div style="width:100%;height:100%;overflow-y: scroll;" class="ff" onscroll="myFunction(event)">
 			<div id="touchLog">
 			<input type="hidden" id="hidid" runat="server" />
 			<input type="hidden" id="hidtime" runat="server" />
@@ -177,36 +177,44 @@
     
 
        <script type="text/javascript">
-		   $('.ff').on('touchmove',function(){
-		       e.stopPropagation()
-		    })
-			$('.ff').on('touchend',function(){
-			    e.stopPropagation()
-			 })
-			 $('.ff').on('touchstart',function(){
-			     e.stopPropagation()
-			  })
+		   function myFunction(e){
+		   	// e.preventDefault()
+		   	console.log(e)
+		   	if(e.target.scrollTop==0){
+		   		f=true
+		   	}else{
+		   		f=false
+		   	}
+		   }
 
       var doc = $(document);
       var _touches_point1=0;var _touches_point2=0;
+	  var f=false
       document.getElementById("s").addEventListener("touchstart",function(e) {
         _touches_point1 = e.touches[0].pageY;
+
       });
       document.getElementById("s").addEventListener("touchend",function(e) {
       	$('#_domain_display').slideUp('normal' , function(){
       		$('#_domain_display').remove();
       	});
+
       });
       document.getElementById("s").addEventListener("touchmove",function(e) {	
-      	_touches_point2 = e.touches[0].pageY;
-      	if(doc.scrollTop()<=0 && _touches_point1<_touches_point2){
-      	   e.preventDefault();
-      	   if( $('#_domain_display').length <=0 ){
-      		 $('#s').prepend('<div id="_domain_display" style="text-align:center;background-color:#ededed;color:#a6a6a6;height:0px;padding:15px 0;line-height:40px;font-size:18px;overflow:hidden;"><p>网页由 xxx提供</p ></div>');
-      	   }
-      	$('#_domain_display').height((_touches_point2-_touches_point1));
-      	}
+		  if(f){
+			  _touches_point2 = e.touches[0].pageY;
+			  if(doc.scrollTop()<=0 && _touches_point1<_touches_point2){
+			     e.preventDefault();
+			     if( $('#_domain_display').length <=0 ){
+			  	 $('#s').prepend('<div id="_domain_display" style="text-align:center;background-color:#ededed;color:#a6a6a6;height:0px;padding:15px 0;line-height:40px;font-size:18px;overflow:hidden;"><p>网页由 xxx提供</p ></div>');
+			     }
+			  $('#_domain_display').height((_touches_point2-_touches_point1));
+			  }
+		  }
+
+      	
       });	
+	
 	  // var obj = document.getElementById("touchLog");
 	  // obj.addEventListener("click", showMsg);
 	  // function showMsg(ev) {
