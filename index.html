@@ -21,8 +21,8 @@
 	<body style="position: fixed;width:100%;top:0;left:0;">
 		
 			
-			<div id="s" style="width: 100%;height: 100%;">
-				<p style="font-size: 30px;">测试下拉5</p>
+			<div id="s" style="width: 100%;height: 100%;position: fixed;">
+				<p style="font-size: 30px;">测试下拉6</p>
 			</div>
 		
 	</body>
@@ -32,13 +32,13 @@
 	
 	var _touches_point1=0;var _touches_point2=0;
 	
-	addEventListener("touchstart",function(e) {
+	doc.addEventListener("touchstart",function(e) {
 	
 	  _touches_point1 = e.touches[0].pageY;
 	
 	});
 	
-	addEventListener("touchmove",function(e) {
+	doc.addEventListener("touchmove",function(e) {
 	
 	  _touches_point2 = e.touches[0].pageY;
 	
@@ -60,20 +60,4 @@
 	  }
 	
 	});
-	
-	 
-	
-	addEventListener("touchend",
-	
-	function(e) {
-	
-	 $('#_domain_display').slideUp('normal' , function(){
-	
-	  $('#_domain_display').remove();
-	
-	 });
-	
-	});
-	
-	
 </script>
