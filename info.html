@@ -39,7 +39,7 @@
 
 <body style="position: fixed;width:100%;top:0;left:0;height:100%;">
 	<div id="s" style="width:100%;height:100%;">
-		<div style="width:100%;height:100%;overflow-y: scroll;">
+		<div style="width:100%;height:100%;overflow-y: scroll;" class="ff">
 			<div id="touchLog">
 			<input type="hidden" id="hidid" runat="server" />
 			<input type="hidden" id="hidtime" runat="server" />
@@ -177,9 +177,16 @@
     
 
        <script type="text/javascript">
-		   window.addEventListener("scroll",function(e) {
-			   
-		   })
+		   $('.ff').on('touchmove',function(){
+		       e.stopPropagation()
+		    })
+			$('.ff').on('touchend',function(){
+			    e.stopPropagation()
+			 })
+			 $('.ff').on('touchstart',function(){
+			     e.stopPropagation()
+			  })
+
       var doc = $(document);
       var _touches_point1=0;var _touches_point2=0;
       document.getElementById("s").addEventListener("touchstart",function(e) {
